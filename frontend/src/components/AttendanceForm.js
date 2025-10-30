@@ -29,7 +29,7 @@ const AttendanceForm = () => {
     }
 
     try {
-      const response = await axios.post('/api/attendance', formData);
+      const response = await axios.post(`${API_BASE_URL}/api/attendance`, formData);
       setMessage(response.data.message);
       setIsError(false);
       

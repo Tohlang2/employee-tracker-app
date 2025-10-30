@@ -5,6 +5,14 @@ import AttendanceDashboard from './components/AttendanceDashboard';
 import Footer from './components/Footer';
 import './App.css';
 
+// API configuration for different environments
+const API_BASE_URL = process.env.NODE_ENV === 'production' 
+  ? process.env.REACT_APP_API_URL || ''  // Use environment variable in production
+  : 'http://localhost:5001';  // Local development
+
+console.log('API Base URL:', API_BASE_URL);
+console.log('Environment:', process.env.NODE_ENV);
+
 function App() {
   return (
     <Router>

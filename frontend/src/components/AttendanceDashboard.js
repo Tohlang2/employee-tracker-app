@@ -15,7 +15,7 @@ const AttendanceDashboard = () => {
   const fetchAttendance = async () => {
     try {
       setLoading(true);
-      const response = await axios.get('/api/attendance');
+      const response = await axios.get(`${API_BASE_URL}/api/attendance`);
       setAttendance(response.data);
     } catch (error) {
       console.error('Error fetching attendance:', error);
@@ -31,7 +31,7 @@ const AttendanceDashboard = () => {
       if (searchQuery) params.append('query', searchQuery);
       if (filterDate) params.append('date', filterDate);
 
-      const response = await axios.get(`/api/attendance/search?${params}`);
+      const response = await axios.get(`${API_BASE_URL}/api/attendance/search?${params}`);
       setAttendance(response.data);
     } catch (error) {
       console.error('Error searching attendance:', error);
@@ -43,8 +43,7 @@ const AttendanceDashboard = () => {
   const handleDelete = async (id) => {
     if (window.confirm('Are you sure you want to delete this record?')) {
       try {
-        await axios.delete(`/api/attendance/${id}`);
-        fetchAttendance();
+            await axios.delete(`${API_BASE_URL}/api/attendance/${id}`);    fetchAttendance();
       } catch (error) {
         console.error('Error deleting record:', error);
         alert('Failed to delete record');
